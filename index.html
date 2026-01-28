@@ -653,6 +653,67 @@
 					grid-column: span 4;
 				}
 			}
+			/* Mobile nav fix (no redesign) */
+			.menu-btn {
+				display: none; /* show only on mobile */
+			}
+
+			@media (max-width: 720px) {
+				.nav-inner {
+					position: relative;
+				}
+
+				/* Show hamburger, keep brand + button on one row */
+				.menu-btn {
+					display: inline-flex;
+				}
+
+				/* Hide links by default on mobile (no wrapping mess) */
+				.links {
+					display: none;
+					position: absolute;
+					top: calc(100% + 10px);
+					right: 24px; /* matches container padding */
+					left: 24px; /* full-width dropdown */
+					flex-direction: column;
+					align-items: stretch;
+					justify-content: flex-start;
+					gap: 10px;
+					padding: 12px;
+					border: 1px solid var(--border);
+					border-radius: 16px;
+					background: rgba(7, 8, 16, 0.88);
+					backdrop-filter: blur(12px);
+					box-shadow: var(--shadow);
+				}
+
+				/* When open */
+				.nav.open .links {
+					display: flex;
+				}
+
+				/* Keep your link style, just make them easier to tap */
+				.links a {
+					padding: 10px 12px;
+				}
+
+				/* Optional: avoid accidental tap highlight weirdness */
+				.links a,
+				.menu-btn {
+					-webkit-tap-highlight-color: transparent;
+				}
+			}
+
+			/* Desktop: ensure menu button never shows */
+			@media (min-width: 721px) {
+				.menu-btn {
+					display: none;
+				}
+				.links {
+					display: flex; /* your original behavior */
+					position: static;
+				}
+			}
 		</style>
 	</head>
 
@@ -666,6 +727,32 @@
 					<span class="logo" aria-hidden="true"></span>
 					<span>YourName</span>
 				</div>
+
+				<button
+					class="menu-btn btn small ghost"
+					type="button"
+					aria-label="Open menu"
+					aria-expanded="false">
+					<span class="icon" aria-hidden="true">
+						<svg viewBox="0 0 24 24" fill="none">
+							<path
+								d="M4 7h16"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round" />
+							<path
+								d="M4 12h16"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round" />
+							<path
+								d="M4 17h16"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round" />
+						</svg>
+					</span>
+				</button>
 
 				<nav class="links" aria-label="Primary">
 					<a href="#work">Work</a>
@@ -1175,6 +1262,38 @@
 					el.style.transform = "";
 				});
 			});
+			// Mobile nav toggle
+			const navEl = document.querySelector(".nav");
+			const menuBtn = document.querySelector(".menu-btn");
+			const linksEl = document.querySelector(".links");
+
+			if (navEl && menuBtn && linksEl) {
+				const setOpen = (open) => {
+					navEl.classList.toggle("open", open);
+					menuBtn.setAttribute("aria-expanded", String(open));
+					menuBtn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+				};
+
+				menuBtn.addEventListener("click", () => {
+					const isOpen = navEl.classList.contains("open");
+					setOpen(!isOpen);
+				});
+
+				// Close after clicking a link (mobile)
+				linksEl.addEventListener("click", (e) => {
+					if (e.target.closest("a")) setOpen(false);
+				});
+
+				// Close on Escape
+				document.addEventListener("keydown", (e) => {
+					if (e.key === "Escape") setOpen(false);
+				});
+
+				// Close when tapping outside
+				document.addEventListener("click", (e) => {
+					if (!navEl.contains(e.target)) setOpen(false);
+				});
+			}
 		</script>
 	</body>
 </html>
