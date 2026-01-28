@@ -1,0 +1,1180 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Your Name — Portfolio</title>
+		<meta
+			name="description"
+			content="Premium portfolio of Your Name: web design & development." />
+
+		<!-- Optional (premium typography). Remove if you want zero external requests. -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+			rel="stylesheet" />
+
+		<style>
+			:root {
+				--bg: #070810;
+				--bg2: #0b0c16;
+				--card: rgba(255, 255, 255, 0.04);
+				--card2: rgba(255, 255, 255, 0.06);
+				--text: #f1f1f6;
+				--muted: rgba(241, 241, 246, 0.7);
+				--muted2: rgba(241, 241, 246, 0.55);
+				--brand: #7c5cff;
+				--brand2: #00d4ff;
+				--border: rgba(255, 255, 255, 0.1);
+				--shadow: 0 20px 70px rgba(0, 0, 0, 0.55);
+				--max: 1080px;
+				--r: 18px;
+			}
+			* {
+				box-sizing: border-box;
+			}
+			html {
+				scroll-behavior: smooth;
+			}
+			body {
+				margin: 0;
+				font-family:
+					Inter,
+					ui-sans-serif,
+					system-ui,
+					-apple-system,
+					Segoe UI,
+					Roboto,
+					Arial;
+				background:
+					radial-gradient(
+						1200px 800px at 20% -10%,
+						rgba(124, 92, 255, 0.4),
+						transparent 60%
+					),
+					radial-gradient(
+						900px 700px at 90% 10%,
+						rgba(0, 212, 255, 0.18),
+						transparent 55%
+					),
+					radial-gradient(
+						800px 600px at 40% 110%,
+						rgba(124, 92, 255, 0.16),
+						transparent 60%
+					),
+					linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+				color: var(--text);
+				line-height: 1.55;
+				overflow-x: hidden;
+			}
+			a {
+				color: inherit;
+				text-decoration: none;
+			}
+			.container {
+				max-width: var(--max);
+				margin: 0 auto;
+				padding: 24px;
+			}
+			.sr {
+				position: absolute;
+				width: 1px;
+				height: 1px;
+				padding: 0;
+				margin: -1px;
+				overflow: hidden;
+				clip: rect(0, 0, 0, 0);
+				white-space: nowrap;
+				border: 0;
+			}
+
+			/* Subtle animated background particles/glow */
+			.bg-orb {
+				position: fixed;
+				inset: auto;
+				width: 520px;
+				height: 520px;
+				border-radius: 999px;
+				filter: blur(80px);
+				opacity: 0.22;
+				pointer-events: none;
+				transform: translate3d(0, 0, 0);
+				z-index: -1;
+				animation: float 10s ease-in-out infinite;
+			}
+			.orb1 {
+				left: -180px;
+				top: 120px;
+				background: rgba(124, 92, 255, 0.9);
+			}
+			.orb2 {
+				right: -220px;
+				top: 40px;
+				background: rgba(0, 212, 255, 0.7);
+				animation-delay: -4s;
+			}
+			@keyframes float {
+				0%,
+				100% {
+					transform: translateY(0);
+				}
+				50% {
+					transform: translateY(-22px);
+				}
+			}
+
+			/* NAV */
+			.nav {
+				position: sticky;
+				top: 0;
+				z-index: 20;
+				backdrop-filter: blur(12px);
+				background: rgba(7, 8, 16, 0.55);
+				border-bottom: 1px solid var(--border);
+			}
+			.nav-inner {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				gap: 16px;
+			}
+			.brand {
+				display: flex;
+				align-items: center;
+				gap: 10px;
+				font-family: Sora, Inter, system-ui;
+				font-weight: 700;
+				letter-spacing: -0.2px;
+			}
+			.logo {
+				width: 34px;
+				height: 34px;
+				border-radius: 12px;
+				background:
+					radial-gradient(
+						12px 12px at 30% 30%,
+						rgba(255, 255, 255, 0.55),
+						transparent 60%
+					),
+					linear-gradient(
+						135deg,
+						rgba(124, 92, 255, 0.9),
+						rgba(0, 212, 255, 0.7)
+					);
+				box-shadow: 0 10px 30px rgba(124, 92, 255, 0.25);
+				border: 1px solid rgba(255, 255, 255, 0.18);
+			}
+			.links {
+				display: flex;
+				gap: 14px;
+				align-items: center;
+				font-size: 14px;
+				color: var(--muted);
+				flex-wrap: wrap;
+				justify-content: flex-end;
+			}
+			.links a {
+				padding: 8px 10px;
+				border-radius: 999px;
+				border: 1px solid transparent;
+				transition: 0.2s ease;
+			}
+			.links a:hover {
+				color: var(--text);
+				border-color: rgba(255, 255, 255, 0.1);
+				background: rgba(255, 255, 255, 0.04);
+			}
+			.links a.active {
+				color: var(--text);
+				border-color: rgba(124, 92, 255, 0.35);
+				background: rgba(124, 92, 255, 0.1);
+			}
+
+			/* Buttons */
+			.btn {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				gap: 10px;
+				padding: 12px 14px;
+				border-radius: 14px;
+				border: 1px solid var(--border);
+				background: rgba(255, 255, 255, 0.04);
+				color: var(--text);
+				font-weight: 700;
+				font-size: 14px;
+				transition:
+					transform 0.18s ease,
+					background 0.18s ease,
+					border-color 0.18s ease;
+				will-change: transform;
+				cursor: pointer;
+			}
+			.btn:hover {
+				transform: translateY(-2px);
+			}
+			.btn:focus {
+				outline: none;
+				box-shadow: 0 0 0 3px rgba(124, 92, 255, 0.25);
+			}
+			.btn.primary {
+				border-color: transparent;
+				background: linear-gradient(
+					135deg,
+					rgba(124, 92, 255, 0.95),
+					rgba(0, 212, 255, 0.55)
+				);
+				box-shadow: 0 18px 50px rgba(124, 92, 255, 0.2);
+			}
+			.btn.ghost {
+				background: transparent;
+			}
+			.btn.small {
+				padding: 10px 12px;
+				font-size: 13px;
+				border-radius: 12px;
+			}
+			.btn .icon {
+				width: 16px;
+				height: 16px;
+				display: inline-block;
+			}
+
+			/* Layout sections */
+			.hero {
+				padding: 56px 0 18px;
+				display: grid;
+				grid-template-columns: 1fr;
+				gap: 18px;
+				align-items: stretch;
+			}
+			.hero-top {
+				display: flex;
+				flex-direction: column;
+				gap: 14px;
+			}
+			.badge {
+				display: inline-flex;
+				align-items: center;
+				gap: 10px;
+				padding: 8px 12px;
+				border: 1px solid var(--border);
+				border-radius: 999px;
+				background: rgba(255, 255, 255, 0.03);
+				color: var(--muted);
+				font-size: 13px;
+				width: fit-content;
+			}
+			.dot {
+				width: 9px;
+				height: 9px;
+				border-radius: 50%;
+				background: linear-gradient(135deg, var(--brand), var(--brand2));
+				box-shadow: 0 0 0 4px rgba(124, 92, 255, 0.12);
+			}
+			h1 {
+				font-family: Sora, Inter, system-ui;
+				margin: 0;
+				font-size: 44px;
+				line-height: 1.04;
+				letter-spacing: -0.7px;
+			}
+			.lead {
+				margin: 0;
+				color: var(--muted);
+				max-width: 62ch;
+				font-size: 16px;
+			}
+			.cta {
+				display: flex;
+				gap: 12px;
+				flex-wrap: wrap;
+				margin-top: 6px;
+			}
+
+			.hero-grid {
+				display: grid;
+				grid-template-columns: 1fr;
+				gap: 14px;
+			}
+
+			/* Premium cards */
+			.card {
+				border: 1px solid var(--border);
+				background: linear-gradient(
+					180deg,
+					rgba(255, 255, 255, 0.05),
+					rgba(255, 255, 255, 0.03)
+				);
+				border-radius: var(--r);
+				box-shadow: var(--shadow);
+				overflow: hidden;
+				position: relative;
+			}
+			.card::before {
+				content: "";
+				position: absolute;
+				inset: -1px;
+				background:
+					radial-gradient(
+						400px 200px at 30% 10%,
+						rgba(124, 92, 255, 0.18),
+						transparent 60%
+					),
+					radial-gradient(
+						380px 200px at 90% 0%,
+						rgba(0, 212, 255, 0.12),
+						transparent 60%
+					);
+				opacity: 0.9;
+				pointer-events: none;
+			}
+			.card > * {
+				position: relative;
+			}
+			.pad {
+				padding: 18px;
+			}
+
+			/* Profile card */
+			.profile {
+				display: flex;
+				flex-direction: column;
+				gap: 14px;
+				align-items: center;
+			}
+			.avatar-wrap {
+				position: relative;
+				width: 186px;
+				height: 186px;
+				border-radius: 20px;
+				background: linear-gradient(
+					135deg,
+					rgba(124, 92, 255, 0.65),
+					rgba(0, 212, 255, 0.3)
+				);
+				padding: 2px;
+				flex: 0 0 auto;
+				box-shadow: 0 18px 60px rgba(124, 92, 255, 0.18);
+			}
+			.avatar {
+				width: 100%;
+				height: 100%;
+				border-radius: 18px;
+				object-fit: cover;
+				display: block;
+				border: 1px solid rgba(255, 255, 255, 0.12);
+				background: rgba(255, 255, 255, 0.04);
+			}
+			.who {
+				display: flex;
+				flex-direction: column;
+				gap: 6px;
+				min-width: 0;
+				text-align: center;
+			}
+			.who .name {
+				font-family: Sora, Inter, system-ui;
+				font-weight: 700;
+				letter-spacing: -0.3px;
+				font-size: 16px;
+			}
+			.who .role {
+				color: var(--muted);
+				font-size: 13px;
+			}
+			.row {
+				display: flex;
+				gap: 10px;
+				flex-wrap: wrap;
+				margin-top: 10px;
+			}
+
+			/* Stats */
+			.stats {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				gap: 10px;
+			}
+			.stat {
+				border: 1px solid rgba(255, 255, 255, 0.1);
+				background: rgba(0, 0, 0, 0.18);
+				border-radius: 16px;
+				padding: 12px;
+				text-align: left;
+				min-height: 84px;
+				transition:
+					transform 0.2s ease,
+					border-color 0.2s ease;
+			}
+			.stat:hover {
+				transform: translateY(-2px);
+				border-color: rgba(124, 92, 255, 0.28);
+			}
+			.stat .n {
+				font-family: Sora, Inter, system-ui;
+				font-weight: 800;
+				font-size: 18px;
+				letter-spacing: -0.2px;
+			}
+			.stat .t {
+				margin-top: 6px;
+				color: var(--muted);
+				font-size: 12px;
+			}
+
+			/* Sections */
+			.section {
+				padding: 26px 0;
+			}
+			.section h2 {
+				font-family: Sora, Inter, system-ui;
+				margin: 0;
+				font-size: 22px;
+				letter-spacing: -0.3px;
+			}
+			.section .sub {
+				margin-top: 8px;
+				color: var(--muted);
+				max-width: 75ch;
+			}
+
+			/* Grid */
+			.grid {
+				display: grid;
+				gap: 14px;
+				margin-top: 14px;
+				grid-template-columns: repeat(12, 1fr);
+			}
+			.col6 {
+				grid-column: span 12;
+			}
+			.col4 {
+				grid-column: span 12;
+			}
+
+			/* Case study cards */
+			.work {
+				padding: 16px;
+				border-radius: var(--r);
+				border: 1px solid rgba(255, 255, 255, 0.1);
+				background: rgba(0, 0, 0, 0.18);
+				transition:
+					transform 0.18s ease,
+					border-color 0.18s ease,
+					background 0.18s ease;
+			}
+			.work:hover {
+				transform: translateY(-3px);
+				border-color: rgba(0, 212, 255, 0.18);
+				background: rgba(255, 255, 255, 0.04);
+			}
+			.work h3 {
+				margin: 0 0 6px;
+				font-family: Sora, Inter, system-ui;
+				font-size: 18px;
+				letter-spacing: -0.2px;
+			}
+			.meta {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 8px;
+				color: var(--muted);
+				font-size: 13px;
+			}
+			.pill {
+				display: inline-flex;
+				padding: 6px 10px;
+				border-radius: 999px;
+				border: 1px solid rgba(255, 255, 255, 0.1);
+				background: rgba(255, 255, 255, 0.03);
+				color: var(--muted);
+				font-size: 12px;
+			}
+			.bullets {
+				margin: 10px 0 0;
+				padding-left: 18px;
+				color: var(--muted);
+			}
+			.bullets li {
+				margin: 6px 0;
+			}
+
+			/* Timeline */
+			.timeline {
+				display: grid;
+				gap: 12px;
+				margin-top: 14px;
+			}
+			.titem {
+				display: grid;
+				grid-template-columns: 110px 1fr;
+				gap: 14px;
+				padding: 14px;
+				border: 1px solid rgba(255, 255, 255, 0.1);
+				border-radius: var(--r);
+				background: rgba(0, 0, 0, 0.16);
+			}
+			.titem .when {
+				color: var(--muted2);
+				font-size: 13px;
+				padding-top: 2px;
+			}
+			.titem .what {
+				min-width: 0;
+			}
+			.titem .what strong {
+				display: block;
+				font-family: Sora, Inter, system-ui;
+				font-size: 15px;
+				letter-spacing: -0.2px;
+				margin-bottom: 4px;
+			}
+			.titem .what span {
+				color: var(--muted);
+				font-size: 13px;
+			}
+
+			/* Testimonials */
+			.quote {
+				padding: 16px;
+				border-radius: var(--r);
+				border: 1px solid rgba(255, 255, 255, 0.1);
+				background: rgba(0, 0, 0, 0.16);
+			}
+			blockquote {
+				margin: 0;
+				color: var(--muted);
+			}
+			.qwho {
+				margin-top: 10px;
+				color: var(--muted2);
+				font-size: 13px;
+			}
+
+			/* Contact */
+			.contact {
+				display: flex;
+				align-items: flex-start;
+				justify-content: space-between;
+				gap: 14px;
+				flex-wrap: wrap;
+			}
+			.contact p {
+				margin: 8px 0 0;
+				color: var(--muted);
+				max-width: 70ch;
+			}
+			footer {
+				padding: 34px 0;
+				color: var(--muted2);
+				font-size: 13px;
+			}
+			.foot-row {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				gap: 10px;
+				flex-wrap: wrap;
+				border-top: 1px solid rgba(255, 255, 255, 0.08);
+				padding-top: 18px;
+			}
+			.social {
+				display: flex;
+				gap: 10px;
+				flex-wrap: wrap;
+			}
+			.social a {
+				opacity: 0.85;
+			}
+			.social a:hover {
+				opacity: 1;
+				transform: translateY(-1px);
+			}
+
+			/* Scroll reveal */
+			.reveal {
+				opacity: 0;
+				transform: translateY(14px);
+				transition:
+					opacity 0.6s ease,
+					transform 0.6s ease;
+			}
+			.reveal.in {
+				opacity: 1;
+				transform: translateY(0);
+			}
+
+			/* Nice hover “magnetic” feel (subtle) */
+			.mag {
+				position: relative;
+			}
+			.mag:hover {
+				border-color: rgba(124, 92, 255, 0.25);
+			}
+
+			/* Reduced motion */
+			@media (prefers-reduced-motion: reduce) {
+				html {
+					scroll-behavior: auto;
+				}
+				.bg-orb {
+					animation: none;
+				}
+				.btn,
+				.work,
+				.stat {
+					transition: none;
+				}
+				.reveal {
+					opacity: 1;
+					transform: none;
+					transition: none;
+				}
+			}
+
+			@media (min-width: 920px) {
+				.hero {
+					grid-template-columns: 1.25fr 0.75fr;
+					gap: 18px;
+					padding: 72px 0 18px;
+				}
+				h1 {
+					font-size: 56px;
+				}
+				.hero-grid {
+					gap: 14px;
+				}
+				.col6 {
+					grid-column: span 6;
+				}
+				.col4 {
+					grid-column: span 4;
+				}
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="bg-orb orb1"></div>
+		<div class="bg-orb orb2"></div>
+
+		<header class="nav">
+			<div class="container nav-inner">
+				<div class="brand">
+					<span class="logo" aria-hidden="true"></span>
+					<span>YourName</span>
+				</div>
+
+				<nav class="links" aria-label="Primary">
+					<a href="#work">Work</a>
+					<a href="#services">Services</a>
+					<a href="#about">About</a>
+					<a href="#contact">Contact</a>
+				</nav>
+			</div>
+		</header>
+
+		<main class="container">
+			<!-- HERO -->
+			<section class="hero">
+				<div class="hero-top reveal">
+					<div class="badge">
+						<span class="dot"></span>
+						Available for freelance • Istanbul • 2026
+					</div>
+
+					<h1>I design and build premium websites</h1>
+
+					<p class="lead">
+						Short pitch (2 lines max). Example: “I help startups and creators
+						ship fast, conversion-focused landing pages and story-driven
+						portfolios.”
+					</p>
+
+					<div class="cta">
+						<a class="btn primary mag" href="#work">
+							<span class="icon" aria-hidden="true">
+								<svg viewBox="0 0 24 24" fill="none">
+									<path
+										d="M7 17L17 7"
+										stroke="currentColor"
+										stroke-width="2"
+										stroke-linecap="round" />
+									<path
+										d="M9 7h8v8"
+										stroke="currentColor"
+										stroke-width="2"
+										stroke-linecap="round" />
+								</svg>
+							</span>
+							See case studies
+						</a>
+						<a
+							class="btn ghost mag"
+							href="https://github.com/yourhandle"
+							target="_blank"
+							rel="noreferrer"
+							>GitHub</a
+						>
+					</div>
+				</div>
+
+				<div class="hero-grid">
+					<!-- Profile / quick info -->
+					<article class="card reveal">
+						<div class="pad">
+							<div class="profile">
+								<div class="avatar-wrap">
+									<img
+										class="avatar"
+										src="Image.png"
+										alt="Your Name profile photo" />
+								</div>
+
+								<div class="who">
+									<div class="name">Your Name</div>
+									<div class="role">Designer • Front-end Dev • Motion</div>
+
+									<div class="row">
+										<a
+											class="btn small mag"
+											href="https://www.linkedin.com/in/yourhandle"
+											target="_blank"
+											rel="noreferrer"
+											>LinkedIn</a
+										>
+										<a
+											class="btn small mag"
+											href="https://x.com/yourhandle"
+											target="_blank"
+											rel="noreferrer"
+											>X</a
+										>
+										<a class="btn small mag" href="mailto:you@email.com"
+											>Email</a
+										>
+									</div>
+								</div>
+							</div>
+						</div>
+					</article>
+				</div>
+			</section>
+
+			<!-- WORK / CASE STUDIES -->
+			<section id="work" class="section">
+				<div class="reveal">
+					<h2>Featured case studies</h2>
+				</div>
+
+				<div class="grid">
+					<article class="work col6 reveal">
+						<h3>Project One — Motion Landing Page</h3>
+						<div class="meta">
+							<span class="pill">Role: UI + Front-end</span>
+							<span class="pill">Stack: HTML/CSS/JS</span>
+							<span class="pill">Focus: Conversion</span>
+						</div>
+						<ul class="bullets">
+							<li>Designed clean layout system + premium typography.</li>
+							<li>
+								Built lightweight motion + micro-interactions (no heavy libs).
+							</li>
+							<li>Optimized for fast loading and readability.</li>
+						</ul>
+						<div class="row">
+							<a class="btn small mag" href="#" target="_blank" rel="noreferrer"
+								>Live</a
+							>
+							<a class="btn small mag" href="#" target="_blank" rel="noreferrer"
+								>Code</a
+							>
+						</div>
+					</article>
+
+					<article class="work col6 reveal">
+						<h3>Project Two — Portfolio System</h3>
+						<div class="meta">
+							<span class="pill">Role: Design system</span>
+							<span class="pill">Stack: HTML/CSS</span>
+							<span class="pill">Focus: Brand</span>
+						</div>
+						<ul class="bullets">
+							<li>Created reusable components: cards, pills, buttons, nav.</li>
+							<li>
+								Shipped responsive layouts with consistent spacing & depth.
+							</li>
+							<li>Included scroll reveal + section highlighting.</li>
+						</ul>
+						<div class="row">
+							<a class="btn small mag" href="#" target="_blank" rel="noreferrer"
+								>Live</a
+							>
+							<a class="btn small mag" href="#" target="_blank" rel="noreferrer"
+								>Code</a
+							>
+						</div>
+					</article>
+
+					<article class="work col6 reveal">
+						<h3>Project Three — Product UI Concept</h3>
+						<div class="meta">
+							<span class="pill">Role: UI/UX</span>
+							<span class="pill">Stack: Figma → Web</span>
+							<span class="pill">Focus: Clarity</span>
+						</div>
+						<ul class="bullets">
+							<li>Designed high-contrast UI with glass + subtle gradients.</li>
+							<li>Improved information hierarchy and CTA visibility.</li>
+							<li>
+								Made it accessible: focus states + reduced-motion support.
+							</li>
+						</ul>
+						<div class="row">
+							<a class="btn small mag" href="#" target="_blank" rel="noreferrer"
+								>Live</a
+							>
+							<a class="btn small mag" href="#" target="_blank" rel="noreferrer"
+								>Code</a
+							>
+						</div>
+					</article>
+
+					<article class="work col6 reveal">
+						<h3>Project Four — Dashboard Starter</h3>
+						<div class="meta">
+							<span class="pill">Role: Front-end</span>
+							<span class="pill">Stack: JS</span>
+							<span class="pill">Focus: UX</span>
+						</div>
+						<ul class="bullets">
+							<li>
+								Built clean UI cards and table layout with strong spacing.
+							</li>
+							<li>Added lightweight animations and fast interactions.</li>
+							<li>Prepared components to scale into a bigger app.</li>
+						</ul>
+						<div class="row">
+							<a class="btn small mag" href="#" target="_blank" rel="noreferrer"
+								>Live</a
+							>
+							<a class="btn small mag" href="#" target="_blank" rel="noreferrer"
+								>Code</a
+							>
+						</div>
+					</article>
+				</div>
+			</section>
+
+			<!-- SERVICES -->
+			<section id="services" class="section">
+				<div class="reveal">
+					<h2>Services</h2>
+					<p class="sub">
+						Make it obvious what you do. Simple, premium, and specific.
+					</p>
+				</div>
+
+				<div class="grid">
+					<article class="work col4 reveal">
+						<h3>Landing pages</h3>
+						<p class="sub">
+							High-end marketing pages with strong hierarchy and fast load.
+						</p>
+						<div class="row">
+							<span class="pill">Design</span><span class="pill">Build</span
+							><span class="pill">Copy support</span>
+						</div>
+					</article>
+
+					<article class="work col4 reveal">
+						<h3>Portfolio websites</h3>
+						<p class="sub">
+							Premium personal sites that feel modern and memorable.
+						</p>
+						<div class="row">
+							<span class="pill">Brand</span><span class="pill">Motion</span
+							><span class="pill">SEO basics</span>
+						</div>
+					</article>
+
+					<article class="work col4 reveal">
+						<h3>UI polish</h3>
+						<p class="sub">
+							Upgrade your existing product UI: spacing, typography, and flow.
+						</p>
+						<div class="row">
+							<span class="pill">Design audit</span
+							><span class="pill">Components</span><span class="pill">QA</span>
+						</div>
+					</article>
+				</div>
+			</section>
+
+			<!-- ABOUT + PROCESS -->
+			<section id="about" class="section">
+				<div class="reveal">
+					<h2>About</h2>
+					<p class="sub">
+						A good “About” section answers: who you help, how you work, what
+						you’re known for.
+					</p>
+				</div>
+
+				<div class="grid">
+					<article class="card col6 reveal">
+						<div class="pad">
+							<h3
+								style="
+									margin: 0 0 8px;
+									font-family: Sora, Inter, system-ui;
+									letter-spacing: -0.2px;
+								">
+								What I do
+							</h3>
+							<p style="color: var(--muted); margin: 0">
+								I design and build fast, modern websites with a focus on motion,
+								clarity, and premium aesthetics. I care about performance,
+								accessibility, and the details that make a site feel expensive.
+							</p>
+							<div class="row" style="margin-top: 12px">
+								<span class="pill">UI Design</span>
+								<span class="pill">Front-end</span>
+								<span class="pill">Motion</span>
+								<span class="pill">Performance</span>
+							</div>
+						</div>
+					</article>
+
+					<article class="card col6 reveal">
+						<div class="pad">
+							<h3
+								style="
+									margin: 0 0 8px;
+									font-family: Sora, Inter, system-ui;
+									letter-spacing: -0.2px;
+								">
+								Process
+							</h3>
+							<div style="display: grid; gap: 10px; margin-top: 10px">
+								<div class="titem" style="grid-template-columns: 80px 1fr">
+									<div class="when">01</div>
+									<div class="what">
+										<strong>Discover</strong>
+										<span
+											>Goals, references, content, and what “success”
+											means.</span
+										>
+									</div>
+								</div>
+								<div class="titem" style="grid-template-columns: 80px 1fr">
+									<div class="when">02</div>
+									<div class="what">
+										<strong>Design</strong>
+										<span>Layout, type, components, and motion direction.</span>
+									</div>
+								</div>
+								<div class="titem" style="grid-template-columns: 80px 1fr">
+									<div class="when">03</div>
+									<div class="what">
+										<strong>Build</strong>
+										<span
+											>Responsive implementation + performance and polish.</span
+										>
+									</div>
+								</div>
+								<div class="titem" style="grid-template-columns: 80px 1fr">
+									<div class="when">04</div>
+									<div class="what">
+										<strong>Launch</strong>
+										<span>Deploy, QA, and final tweaks for production.</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</article>
+				</div>
+
+				<div class="reveal" style="margin-top: 18px">
+					<h2 style="font-size: 20px">Experience</h2>
+					<p class="sub">Short timeline. Keep it tight and credible.</p>
+
+					<div class="timeline">
+						<div class="titem reveal">
+							<div class="when">2025–2026</div>
+							<div class="what">
+								<strong>Freelance — Web Design & Front-end</strong>
+								<span
+									>Built landing pages and portfolios with modern UI and
+									motion.</span
+								>
+							</div>
+						</div>
+						<div class="titem reveal">
+							<div class="when">2024–2025</div>
+							<div class="what">
+								<strong>Product UI — Design Systems</strong>
+								<span
+									>Created reusable components and improved UX across
+									screens.</span
+								>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- TESTIMONIALS -->
+			<section class="section">
+				<div class="reveal">
+					<h2>Testimonials</h2>
+					<p class="sub">
+						Even 1–2 strong quotes help a lot. Replace with real names/roles.
+					</p>
+				</div>
+
+				<div class="grid">
+					<div class="quote col6 reveal">
+						<blockquote>
+							“The site feels premium and loads insanely fast. The motion is
+							subtle but makes it look expensive.”
+						</blockquote>
+						<div class="qwho">— Client Name, Role / Company</div>
+					</div>
+					<div class="quote col6 reveal">
+						<blockquote>
+							“Great attention to detail. Clean UI, strong hierarchy, and the
+							final result was exactly what we needed.”
+						</blockquote>
+						<div class="qwho">— Client Name, Role / Company</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- CONTACT -->
+			<section id="contact" class="section">
+				<article class="card reveal">
+					<div class="pad contact">
+						<div>
+							<h2>Let’s build something premium</h2>
+							<p>
+								Tell me what you’re building (goal, deadline, references). I’ll
+								reply with a plan + a clear next step.
+							</p>
+						</div>
+						<div class="row">
+							<a class="btn primary mag" href="mailto:you@email.com"
+								>you@email.com</a
+							>
+							<a
+								class="btn mag"
+								href="https://cal.com/"
+								target="_blank"
+								rel="noreferrer"
+								>Book a call</a
+							>
+						</div>
+					</div>
+				</article>
+			</section>
+
+			<footer>
+				<div class="foot-row">
+					<div>
+						© <span id="y"></span> Your Name • Built with plain HTML • GitHub
+						Pages
+					</div>
+					<div class="social" aria-label="Social links">
+						<a
+							class="btn small mag"
+							href="https://github.com/yourhandle"
+							target="_blank"
+							rel="noreferrer"
+							>GitHub</a
+						>
+						<a
+							class="btn small mag"
+							href="https://www.linkedin.com/in/yourhandle"
+							target="_blank"
+							rel="noreferrer"
+							>LinkedIn</a
+						>
+						<a
+							class="btn small mag"
+							href="https://x.com/yourhandle"
+							target="_blank"
+							rel="noreferrer"
+							>X</a
+						>
+					</div>
+				</div>
+			</footer>
+		</main>
+
+		<script>
+			// Year
+			document.getElementById("y").textContent = new Date().getFullYear();
+
+			// Scroll reveal
+			const prefersReduced = window.matchMedia(
+				"(prefers-reduced-motion: reduce)",
+			).matches;
+			if (!prefersReduced) {
+				const io = new IntersectionObserver(
+					(entries) => {
+						for (const e of entries) {
+							if (e.isIntersecting) e.target.classList.add("in");
+						}
+					},
+					{ threshold: 0.12 },
+				);
+
+				document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+			} else {
+				document
+					.querySelectorAll(".reveal")
+					.forEach((el) => el.classList.add("in"));
+			}
+
+			// Active nav link highlighting
+			const navLinks = Array.from(document.querySelectorAll(".links a"));
+			const sections = navLinks
+				.map((a) => document.querySelector(a.getAttribute("href")))
+				.filter(Boolean);
+
+			const navIO = new IntersectionObserver(
+				(entries) => {
+					const visible = entries
+						.filter((e) => e.isIntersecting)
+						.sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+					if (!visible) return;
+					const id = "#" + visible.target.id;
+					navLinks.forEach((a) =>
+						a.classList.toggle("active", a.getAttribute("href") === id),
+					);
+				},
+				{ rootMargin: "-35% 0px -55% 0px", threshold: [0.1, 0.2, 0.35] },
+			);
+
+			sections.forEach((s) => navIO.observe(s));
+
+			// Small “magnetic” hover (subtle)
+			// Moves button slightly toward cursor for premium feel (very light).
+			const mags = document.querySelectorAll(".mag");
+			mags.forEach((el) => {
+				el.addEventListener("mousemove", (e) => {
+					if (prefersReduced) return;
+					const r = el.getBoundingClientRect();
+					const x = e.clientX - (r.left + r.width / 2);
+					const y = e.clientY - (r.top + r.height / 2);
+					el.style.transform = `translate(${x * 0.04}px, ${y * 0.06}px)`;
+				});
+				el.addEventListener("mouseleave", () => {
+					el.style.transform = "";
+				});
+			});
+		</script>
+	</body>
+</html>
